@@ -1,7 +1,11 @@
 package applications;
 
+import boardgame.Position;
+
 public class Program {
     public static void main (String[] args){
 
-    }https://github.com/dukeTheLion/chess-java.git
+        Position position = new Position(3, 5);
+        System.out.print(position);
+    }
 }
