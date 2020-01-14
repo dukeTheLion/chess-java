@@ -37,7 +37,11 @@ public class ChessMatch {
 
     private void validateSourcePosition(Position position){
         if(!board.thereIsPiece(position)){
-            throw new ChessExeception("Error: piece on sourse position");
+            throw new ChessExeception("Error: no piece on source position");
+        }
+
+        if (!board.piece(position).isThereAnyPossibleMove()){
+            throw new ChessExeception("Error: no moves to execute");
         }
     }
 
