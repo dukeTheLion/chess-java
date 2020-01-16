@@ -17,7 +17,7 @@ public class Program {
         ChessMatch chessMatch = new ChessMatch();
         List<ChessPiece> captured = new ArrayList<>();
 
-        boolean temp = true;
+        double turn;
 
         String ANSI_RESET = "\u001B[0m";
         String ANSI_BLACK_BACKGROUND = "\u001B[40m";
@@ -27,17 +27,15 @@ public class Program {
 
         while (!chessMatch.getCheckMate()) {
             try {
+                turn = chessMatch.getTurn();
+
                 UI.clearScreen();
                 UI.printMatch(chessMatch, captured);
                 System.out.print(" | ");
-                if (temp){
+                if (turn % 2.0 != 0){
                     System.out.print(ANSI_BLACK_BACKGROUND + ANSI_BLUE + " Source: " + ANSI_RESET + " ");
-
-                    temp = false;
                 } else {
                     System.out.print(ANSI_WHITE_BACKGROUND + ANSI_YELLOW + " Source: " + ANSI_RESET + " ");
-
-                    temp = true;
                 }
 
                 ChessPosition source = UI.readChessPosition(sc);
@@ -47,7 +45,7 @@ public class Program {
 
                 UI.printMatch(chessMatch, possibleMoves, captured);
                 System.out.print(" | ");
-                if (!temp){
+                if (turn % 2.0 != 0){
                     System.out.print(ANSI_BLACK_BACKGROUND + ANSI_BLUE + " Target: " + ANSI_RESET + " ");
                 } else {
                     System.out.print(ANSI_WHITE_BACKGROUND + ANSI_YELLOW + " Target: " + ANSI_RESET + " ");
